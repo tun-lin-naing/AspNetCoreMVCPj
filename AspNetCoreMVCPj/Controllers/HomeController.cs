@@ -1,5 +1,7 @@
 ﻿using AspNetCoreMVCPj.Models;
+using AspNetCoreMVCPj.Models.Employee;
 using AspNetCoreMVCPj.Repositories;
+using AspNetCoreMVCPj.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -19,6 +21,17 @@ namespace AspNetCoreMVCPj.Controllers
         public string Index()
         {
             return _employeeRepository.GetEmployee(1).Name;
+        }
+
+        public ViewResult Details()
+        {
+            HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
+            {
+
+                Employee = _employeeRepository.GetEmployee(1),
+                PageTitle = "Home Details"
+            };
+            return View(homeDetailsViewModel);
         }
 
         public IActionResult Privacy()

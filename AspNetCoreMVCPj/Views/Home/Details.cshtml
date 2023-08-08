@@ -1,14 +1,10 @@
 ﻿@model AspNetCoreMVCPj.ViewModels.Home.HomeDetailsViewModel
-<html>
-    <head>
-        <title>
-            Details
-        </title>
-    </head>
-    <body>
-        <h3> @Model.PageTitle</h3>
-        <div>
-            Name : @Model.Employee.Name
-        </div>
-    </body>
-</html>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h3> @Model.PageTitle</h3>
+<div>
+    Name : @Model.Employee.Name
+</div>

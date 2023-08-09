@@ -1,5 +1,4 @@
 ﻿using AspNetCoreMVCPj.Models;
-using AspNetCoreMVCPj.Models.Employee;
 using AspNetCoreMVCPj.Repositories;
 using AspNetCoreMVCPj.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
@@ -41,10 +40,18 @@ namespace AspNetCoreMVCPj.Controllers
             return View();
         }
 
-        public RedirectToActionResult Create(Employee employee)
+        [HttpPost]
+        public IActionResult Create(Employee employee)
         {
-            Employee newEmployee = _employeeRepository.AddEmployee(employee);
-            return RedirectToAction("Details", new { Id = newEmployee.Id });
+            if (ModelState.IsValid)
+            {
+                Employee newEmployee = _employeeRepository.AddEmployee(employee);
+                return RedirectToAction("Details", new { Id = newEmployee.Id });
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

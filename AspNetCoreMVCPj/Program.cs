@@ -1,10 +1,20 @@
+using AspNetCoreMVCPj.Models;
 using AspNetCoreMVCPj.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//builder.Services.Configure<AppSettings>(
+//    builder.Configuration.GetSection("AppSettings"));
+
+var connectionString = builder.Configuration.GetConnectionString("EmployeeDBConnection");
+builder.Services.AddDbContext<AppDbContext>(
+    options => options.UseSqlServer(connectionString));
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+builder.Services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
 
 var app = builder.Build();
 

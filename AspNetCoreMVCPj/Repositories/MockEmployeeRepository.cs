@@ -1,5 +1,5 @@
 ﻿using AspNetCoreMVCPj.Models;
-using AspNetCoreMVCPj.Models.Employee;
+using AspNetCoreMVCPj.Models;
 
 namespace AspNetCoreMVCPj.Repositories
 {
@@ -24,6 +24,18 @@ namespace AspNetCoreMVCPj.Repositories
             return employee;
         }
 
+        public Employee DeleteEmployee(int id)
+        {
+            Employee? employee = _employeeList.FirstOrDefault(e => e.Id == id);
+
+            if(employee != null)
+            {
+                _employeeList.Remove(employee);
+            }
+
+            return employee;
+        }
+
         public IEnumerable<Employee> GetAllEmployee()
         {
             return _employeeList;
@@ -32,6 +44,20 @@ namespace AspNetCoreMVCPj.Repositories
         public Employee GetEmployee(int id)
         {
             return _employeeList.FirstOrDefault(e => e.Id == id);
+        }
+
+        public Employee UpdateEmployee(Employee employee)
+        {
+           Employee? changesEmployee = _employeeList.FirstOrDefault(emp=>emp.Id == employee.Id);
+
+            if(changesEmployee != null)
+            {
+                changesEmployee.Name = employee.Name;
+                changesEmployee.Department = employee.Department;
+                changesEmployee.Email = employee.Email;
+            }
+
+            return changesEmployee;
         }
     }
 }

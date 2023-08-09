@@ -1,4 +1,4 @@
-﻿using AspNetCoreMVCPj.Models.Employee;
+﻿using AspNetCoreMVCPj.Models;
 
 namespace AspNetCoreMVCPj.Repositories
 {
@@ -9,5 +9,9 @@ namespace AspNetCoreMVCPj.Repositories
         IEnumerable<Employee> GetAllEmployee();
 
         Employee AddEmployee(Employee employee);
+
+        Employee UpdateEmployee(Employee employee);
+
+        Employee DeleteEmployee(int id);
     }
 }

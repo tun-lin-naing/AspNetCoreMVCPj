@@ -1,4 +1,4 @@
-﻿using AspNetCoreMVCPj.Models.Employee;
+﻿using AspNetCoreMVCPj.Models;
 
 namespace AspNetCoreMVCPj.ViewModels.Home
 {

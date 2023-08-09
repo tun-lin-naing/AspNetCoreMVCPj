@@ -35,7 +35,7 @@ namespace AspNetCoreMVCPj.Controllers
             return View(homeDetailsViewModel);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Create()
         {
             return View();
         }

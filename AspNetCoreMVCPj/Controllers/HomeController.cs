@@ -24,20 +24,27 @@ namespace AspNetCoreMVCPj.Controllers
             return View(model);
         }
 
-        public ViewResult Details(int id)
+        public ViewResult Details(int? id)
         {
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
 
-                Employee = _employeeRepository.GetEmployee( id == null || id == 0 ? 1 : id),
+                Employee = _employeeRepository.GetEmployee(id ?? 1),
                 PageTitle = "Home Details"
             };
             return View(homeDetailsViewModel);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
+        }
+
+        public RedirectToActionResult Create(Employee employee)
+        {
+            Employee newEmployee = _employeeRepository.AddEmployee(employee);
+            return RedirectToAction("Details", new { Id = newEmployee.Id });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

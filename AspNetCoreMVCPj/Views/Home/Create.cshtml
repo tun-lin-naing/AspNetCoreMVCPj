@@ -1,5 +1,9 @@
 ﻿@model Employee
 
+@{
+    ViewBag.Title = "Create Employee";
+}
+
 <form asp-controller="home" asp-action="create" method="post" class="mt-3">
     <div class="form-group row mt-3">
         <label asp-for="Name" class="col-sm-2 col-form-label"></label>

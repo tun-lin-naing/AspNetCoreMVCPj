@@ -7,5 +7,7 @@ namespace AspNetCoreMVCPj.Repositories
         Employee GetEmployee(int id);
 
         IEnumerable<Employee> GetAllEmployee();
+
+        Employee AddEmployee(Employee employee);
     }
 }

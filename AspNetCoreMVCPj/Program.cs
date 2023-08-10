@@ -1,5 +1,6 @@
 using AspNetCoreMVCPj.Models;
 using AspNetCoreMVCPj.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NLog;
@@ -22,6 +23,9 @@ var connectionString = builder.Configuration.GetConnectionString("EmployeeDBConn
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseSqlServer(connectionString));
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
@@ -36,11 +40,13 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Error");
-    //app.UseStatusCodePagesWithRedirects("Error/{0}");
+    app.UseStatusCodePagesWithRedirects("Error/{0}");
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseAuthentication();
 
 app.UseRouting();
 

@@ -20,3 +20,8 @@ body {
 .btn {
     width: 75px;
 }
+
+.imgThumbnails{
+    height : 200px;
+    width: auto;
+}

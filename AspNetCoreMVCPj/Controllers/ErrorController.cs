@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetCoreMVCPj.Controllers
 {
@@ -15,6 +17,19 @@ namespace AspNetCoreMVCPj.Controllers
             }
 
             return View("NotFound");
+        }
+
+        [Route("Error")]
+        [AllowAnonymous]
+        public IActionResult Error()
+        {
+            var exceptionDetail = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+
+            ViewBag.ExceptionDetail = exceptionDetail.Path;
+            ViewBag.ExceptionMessage = exceptionDetail.Error.Message;
+            ViewBag.StackTrace = exceptionDetail.Error.StackTrace;
+
+            return View("Error");
         }
     }
 }

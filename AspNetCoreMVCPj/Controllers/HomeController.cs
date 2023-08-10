@@ -30,19 +30,21 @@ namespace AspNetCoreMVCPj.Controllers
 
         public ViewResult Details(int? id)
         {
-            Employee employee = _employeeRepository.GetEmployee(id.Value);
+            throw new Exception("from detal page");
 
-            if (employee == null)
-            {
-                return View("EmployeeNotFound", id);
-            }
+            //Employee employee = _employeeRepository.GetEmployee(id.Value);
 
-            HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
-            {
-                Employee = employee,
-                PageTitle = "Home Details"
-            };
-            return View(homeDetailsViewModel);
+            //if (employee == null)
+            //{
+            //    return View("EmployeeNotFound", id);
+            //}
+
+            //HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
+            //{
+            //    Employee = employee,
+            //    PageTitle = "Home Details"
+            //};
+            //return View(homeDetailsViewModel);
         }
 
         [HttpGet]
